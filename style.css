@@ -41,7 +41,17 @@ main {
     text-shadow: 3px 3px 0px black, 6px 6px 0px pink;
 }
 
+/* .weather-img {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+} */
+
 .weather-icon {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
     filter: drop-shadow(0.35rem 0.35rem 0.5rem rgba(0, 0, 0, 0.5));
 }
 
@@ -122,4 +132,59 @@ main {
     left: 0;
     background-color: rgba(0, 0, 0, .5);
     padding: .25rem;
+}
+
+.location-overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.location-popup {
+    max-width: 80vw;
+    padding: .5rem;
+    background-color: #9CA3AF;
+    border: 2px solid black;
+    border-radius: .5rem;
+}
+
+.popup-header {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+.popup-body {
+    padding: 1rem;
+}
+
+.popup-footer {
+    display: flex;
+    justify-content: space-around;
+    border-top: 2px solid black;
+    padding-top: 1rem;
+}
+
+.popup-footer>button {
+    outline: none;
+    padding: .5rem;
+    background-color: #059669;
+    border: 2px solid black;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.popup-footer>button:hover {
+    background-color: #064E3B;
+}
+
+.none {
+    display: none;
 }

@@ -22,7 +22,7 @@
                 <div class="temp">
                     <span class="temp-mag"></span> <span class="temp-unit"></span>
                 </div>
-                <div class="caption"></div>
+                <div class="caption">No Data!</div>
             </div>
         </div>
     </main>
@@ -31,6 +31,17 @@
 
     <button class="unit-btn">&deg;F</button>
 
-    <div class="img-credit">Photo by <a href="https://www.pexels.com/@abdghat" target="_blank">Abdullah Ghatasheh</a> from <a href="https://www.pexels.com" target="_blank">Pexels</a></div>
+    <div class="location-overlay none">
+        <div class="location-popup">
+            <div class="popup-header">Allow Location Access</div>
+            <div class="popup-body">We need your location in order to get the weather in your locality. You location will not be shared by anyone and we ourselves will not store it.</div>
+            <div class="popup-footer">
+                <button id="openLocationDialog">Open Location Dialog</button>
+                <button id="closePopup">No, Thanks!</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="img-credit">Photo by <a href="https://www.pexels.com/@abdghat" target="_blank" rel="noopener">Abdullah Ghatasheh</a> from <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a></div>
 </body>
 </html>

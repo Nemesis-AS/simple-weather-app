@@ -5,6 +5,9 @@ const tempDiv = document.querySelector(".temp-mag");
 const unitDiv = document.querySelector(".temp-unit");
 const captionDiv = document.querySelector(".caption");
 const unitBtn = document.querySelector("button.unit-btn");
+const locationOverlay = document.querySelector(".location-overlay");
+const openDialogBtn = document.querySelector("#openLocationDialog");
+const closePopupBtn = document.querySelector("#closePopup");
 const unitParameters = {
     C: "metric",
     F: "imperial"
@@ -12,8 +15,22 @@ const unitParameters = {
 
 let tempUnit = "C";
 
+function showLocationPopup() {
+    openDialogBtn.addEventListener("click", e => getLocation());
+    closePopupBtn.addEventListener("click", e => hideLocationOverlay());
+    locationOverlay.classList.remove("none");
+}
+
+function hideLocationOverlay() {
+    if (!locationOverlay.classList.contains("none")) locationOverlay.classList.add("none");
+}
+
 function getLocation() {
-    navigator.geolocation.getCurrentPosition(getWeatherStatus, e => console.error(`ERROR${e.code}: ${e.message}`));
+    hideLocationOverlay();
+    navigator.geolocation.getCurrentPosition(getWeatherStatus, e => {
+        console.error(`ERROR${e.code}: ${e.message}`);
+        captionDiv.innerText = e.message;
+    });
 }
 
 async function getWeatherStatus(position) {
@@ -35,9 +52,17 @@ function updateElements(icon, temp, title) {
 }
 
 if (navigator.geolocation) {
-    getLocation();
+    let permState = "";
+    navigator.permissions.query({ name: 'geolocation' }).then((perm) => {
+        permState = perm.state;
+        if(permState === "granted" || permState === "denied") {
+            getLocation();
+        } else {
+            showLocationPopup();
+        }
+    });
 } else {
-    alert("Geolocation Not Available!");
+    console.error("Geolocation Not Available!");
 }
 
 unitBtn.addEventListener("click", e => {
